@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruth Aimila — Copywriter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --rust: #c4522a;
+    --gold: #c8973a;
+    --sage: #5a7a5e;
+    --dust: #9e8e7e;
+    --light-dust: #e8e0d4;
+    --rule: #d4c8b8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dust);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rust); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55%;
+    height: 120%;
+    background: radial-gradient(ellipse at 70% 40%, rgba(196,82,42,0.06) 0%, rgba(200,151,58,0.04) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left { max-width: 540px; }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #4a4440;
+    max-width: 460px;
+    margin-bottom: 2.8rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .hero-cta:hover {
+    background: var(--rust);
+    transform: translateY(-2px);
+  }
+
+  .hero-cta-arrow {
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+
+  .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    padding-left: 3rem;
+  }
+
+  .hero-stat-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 1.6rem 2rem;
+    width: 280px;
+    animation: floatIn 0.8s ease both;
+  }
+
+  .hero-stat-card:nth-child(1) { animation-delay: 0.1s; transform: translateX(20px); }
+  .hero-stat-card:nth-child(2) { animation-delay: 0.25s; transform: translateX(40px); }
+  .hero-stat-card:nth-child(3) { animation-delay: 0.4s; transform: translateX(20px); }
+
+  @keyframes floatIn {
+    to { transform: translateX(0); opacity: 1; }
+    from { opacity: 0; }
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--rust);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--dust);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SECTION STRUCTURE ── */
+  section { padding: 6rem 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--dust);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  h2 em { font-style: italic; color: var(--rust); }
+
+  .section-desc {
+    font-size: 0.85rem;
+    color: var(--dust);
+    max-width: 280px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* ── APPROACH STRIP ── */
+  .approach {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4rem 3rem;
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .approach-item {
+    padding: 2rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+  }
+
+  .approach-item:last-child { border-right: none; }
+  .approach-item:hover { background: rgba(255,255,255,0.04); }
+
+  .approach-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .approach-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--gold);
+  }
+
+  .approach-text {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.65;
+  }
+
+  /* ── WORK SAMPLES ── */
+  .work-bg { background: var(--cream); }
+
+  .samples-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .sample-card {
+    background: var(--warm-white);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .sample-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(15,14,13,0.08);
+  }
+
+  .sample-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream);
+  }
+
+  .sample-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    background: rgba(196,82,42,0.1);
+    padding: 0.3rem 0.8rem;
+  }
+
+  .sample-brand {
+    font-size: 0.78rem;
+    color: var(--dust);
+    font-weight: 500;
+  }
+
+  .sample-body {
+    padding: 2.2rem 2rem;
+  }
+
+  .sample-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .sample-objective {
+    font-size: 0.78rem;
+    color: var(--dust);
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--rule);
+    letter-spacing: 0.02em;
+  }
+
+  /* Email preview */
+  .email-preview {
+    background: #ffffff;
+    border: 1px solid #e8e4de;
+    max-width: 560px;
+    font-family: Georgia, serif;
+  }
+
+  .email-header-bar {
+    background: var(--ink);
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+
+  .email-subject-bar {
+    padding: 0.8rem 1rem;
+    background: #f8f8f6;
+    border-bottom: 1px solid #e8e4de;
+  }
+
+  .email-subject-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2rem;
+  }
+
+  .email-subject-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .email-preview-inner {
+    padding: 2rem;
+  }
+
+  .email-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  .email-hero-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .email-body-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #3a3530;
+    margin-bottom: 1.2rem;
+  }
+
+  .email-cta-btn {
+    display: block;
+    text-align: center;
+    background: var(--rust);
+    color: white;
+    padding: 0.85rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 1.5rem auto;
+    max-width: 220px;
+  }
+
+  .email-ps {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid #e8e4de;
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* Landing page preview */
+  .lp-preview {
+    background: #0a0a0a;
+    color: #f0ede8;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 560px;
+    overflow: hidden;
+  }
+
+  .lp-browser-bar {
+    background: #222;
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  .lp-url-bar {
+    flex: 1;
+    background: #333;
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #aaa;
+    margin-left: 0.5rem;
+  }
+
+  .lp-inner { padding: 2rem; }
+
+  .lp-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .lp-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .lp-subhead {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(240,237,232,0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .lp-bullets {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .lp-bullets li {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(240,237,232,0.85);
+    padding: 0.4rem 0;
+    padding-left: 1.4rem;
+    position: relative;
+  }
+
+  .lp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .lp-cta {
+    background: var(--gold);
+    color: #0a0a0a;
+    padding: 0.9rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+
+  .lp-trust {
+    font-size: 0.7rem;
+    color: rgba(240,237,232,0.45);
+    margin-top: 0.5rem;
+  }
+
+  /* SMS / short copy */
+  .sms-preview {
+    background: #f0ede8;
+    max-width: 320px;
+    padding: 1.5rem;
+    border-radius: 2px;
+  }
+
+  .sms-bubble {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 1.1rem;
+    border-radius: 12px 12px 12px 2px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    max-width: 90%;
+  }
+
+  .sms-time {
+    font-size: 0.65rem;
+    color: var(--dust);
+    margin-left: 0.3rem;
+  }
+
+  /* Lifecycle flow */
+  .flow-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .flow-step:last-child { border-bottom: none; }
+
+  .flow-day {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--rust);
+    font-weight: 500;
+    padding-top: 0.2rem;
+  }
+
+  .flow-content {}
+
+  .flow-subject {
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .flow-preview-text {
+    font-size: 0.78rem;
+    color: var(--dust);
+    line-height: 1.55;
+  }
+
+  .flow-goal {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    background: rgba(90,122,94,0.1);
+    padding: 0.2rem 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Two-col layout for samples */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+
+  .annotation {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    font-size: 0.78rem;
+    color: var(--dust);
+    line-height: 1.6;
+  }
+
+  .annotation strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── SKILLS SECTION ── */
+  .skills-bg { background: var(--warm-white); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-item {
+    padding: 1.8rem;
+    border: 1px solid var(--rule);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .skill-item:hover {
+    border-color: var(--rust);
+    background: var(--cream);
+  }
+
+  .skill-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
+
+  .skill-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .skill-desc {
+    font-size: 0.78rem;
+    color: var(--dust);
+    line-height: 1.6;
+  }
+
+  /* ── ABOUT / PHILOSOPHY ── */
+  .about-bg { background: var(--ink); color: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-left h2 { color: var(--cream); }
+  .about-left h2 em { color: var(--gold); }
+
+  .about-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.75);
+    margin-top: 1.5rem;
+  }
+
+  .about-text + .about-text { margin-top: 1rem; }
+
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .philosophy-item {
+    padding: 1.4rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: border-color 0.2s;
+  }
+
+  .philosophy-item:hover { border-color: var(--gold); }
+
+  .philosophy-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+
+  .philosophy-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .philosophy-text {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact-bg { background: var(--cream); }
+
+  .contact-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-inner h2 { margin-bottom: 1rem; }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--dust);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.6rem;
+    border: 1px solid var(--ink);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .contact-link.primary {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: white;
+  }
+
+  .contact-link.primary:hover { background: #a84322; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.4);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  /* ── DIVIDER ── */
+  .ruled-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--dust);
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+  }
+
+  .ruled-divider::before,
+  .ruled-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Scroll progress */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--rust);
+    z-index: 200;
+    transition: width 0.1s;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .two-col, .three-col, .skills-grid { grid-template-columns: 1fr; }
+    .approach-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .section-desc { text-align: left; max-width: 100%; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Ruth Aimila</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#lifecycle">Lifecycle</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left fade-up visible">
+    <div class="hero-eyebrow">eCommerce Copywriter</div>
+    <h1>Words that <em>sell</em>, stories that stay.</h1>
+    <p class="hero-sub">I write email campaigns, automation flows, and landing pages that move people — from strangers to loyal customers. Every word earns its place.</p>
+    <a href="#work" class="hero-cta">See my work <span class="hero-cta-arrow">→</span></a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-card">
+      <div class="stat-num">7K+</div>
+      <div class="stat-label">Active readers across creative writing platforms</div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-num">5 yrs</div>
+      <div class="stat-label">Customer experience & lifecycle strategy</div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-num">DTC</div>
+      <div class="stat-label">Email flows · landing pages · retention copy</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<div class="approach">
+  <div class="approach-grid">
+    <div class="approach-item fade-up">
+      <div class="approach-icon">🎯</div>
+      <div class="approach-title">Strategy-Led</div>
+      <div class="approach-text">Every email has a job. I write with the customer journey in mind — not just the message, but the moment.</div>
+    </div>
+    <div class="approach-item fade-up">
+      <div class="approach-icon">🔁</div>
+      <div class="approach-title">Lifecycle-Aware</div>
+      <div class="approach-text">From welcome series to win-back flows, I understand how segmentation and timing shift what copy should do.</div>
+    </div>
+    <div class="approach-item fade-up">
+      <div class="approach-icon">📊</div>
+      <div class="approach-title">Performance-Tracked</div>
+      <div class="approach-text">Open rates, CTR, revenue-per-send — I track what matters and let data sharpen the next draft.</div>
+    </div>
+    <div class="approach-item fade-up">
+      <div class="approach-icon">🤝</div>
+      <div class="approach-title">Collaborative</div>
+      <div class="approach-text">I work closely with designers and strategists to ensure copy and visual always tell the same story.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK SAMPLES -->
+<section class="work-bg" id="work">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-number">01 / WORK SAMPLES</div>
+      <h2>Email <em>campaigns</em> that convert</h2>
+    </div>
+    <p class="section-desc">Spec work across DTC skincare, fashion, and wellness verticals</p>
+  </div>
+
+  <div class="samples-grid">
+
+    <!-- SAMPLE 1: Welcome Email -->
+    <div class="sample-card fade-up">
+      <div class="sample-meta">
+        <span class="sample-tag">Welcome Flow · Email 1</span>
+        <span class="sample-brand">Lumière Skin — DTC Skincare</span>
+      </div>
+      <div class="sample-body">
+        <div class="sample-title">The First Impression Email That Sets the Relationship</div>
+        <div class="sample-objective">Objective: Convert new subscriber → first purchase within 48 hrs. Tone: warm, expert, slightly intimate.</div>
+
+        <div class="email-preview">
+          <div class="email-header-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+          </div>
+          <div class="email-subject-bar">
+            <div class="email-subject-label">Subject Line</div>
+            <div class="email-subject-text">You found us. Now let's fix that. ✨</div>
+          </div>
+          <div class="email-preview-inner">
+            <div class="email-brand-name">Lumière</div>
+            <div class="email-hero-text">Your skin has been waiting for this conversation.</div>
+            <div class="email-body-text">
+              Hey [First Name],<br><br>
+              Welcome to Lumière — where we don't do quick fixes or miracle claims. Just honest skincare, formulated for real skin that lives a real life.<br><br>
+              You signed up for a reason. Maybe it was a breakout that showed up uninvited. Maybe you've been layering serums from six different brands and wondering why nothing's <em>actually</em> working. Maybe you just want to feel at home in your skin.<br><br>
+              We're here for all of it.
+            </div>
+            <div class="ruled-divider">what makes us different</div>
+            <div class="email-body-text">
+              Every Lumière formula is built around three things: clean actives that actually penetrate, textures your skin <em>wants</em> to absorb, and routines simple enough to stick to.<br><br>
+              No 12-step overwhelm. No ingredient lists that need a PhD. Just skin that looks like <em>you</em> — on your best day, every day.
+            </div>
+            <a class="email-cta-btn" href="#">Start your routine →</a>
+            <div class="email-ps">P.S. — Use WELCOME15 at checkout. It's our way of saying we're glad you're here.</div>
+          </div>
+        </div>
+
+        <div class="annotation">
+          <strong>Copy decision:</strong> Leading with a question ("you found us") creates a micro-commitment. The "real skin, real life" framing reduces the premium skincare intimidation barrier. The P.S. carries the discount — studies show P.S. sections get high re-reads, especially in welcome flows.
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE 2: Abandoned Cart -->
+    <div class="sample-card fade-up">
+      <div class="sample-meta">
+        <span class="sample-tag">Abandoned Cart · Email 2 of 3</span>
+        <span class="sample-brand">Archetype Studio — DTC Apparel</span>
+      </div>
+      <div class="sample-body">
+        <div class="sample-title">The "We Both Know What This Is" Cart Recovery</div>
+        <div class="sample-objective">Objective: Recover abandoned cart. Sent 24hr after Email 1 (product reminder). Tone: playful, zero pressure, confident.</div>
+
+        <div class="email-preview">
+          <div class="email-header-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+          </div>
+          <div class="email-subject-bar">
+            <div class="email-subject-label">Subject Line</div>
+            <div class="email-subject-text">Still thinking about it? (Same, honestly.)</div>
+          </div>
+          <div class="email-preview-inner">
+            <div class="email-brand-name">Archetype</div>
+            <div class="email-hero-text">Your cart is still here.<br>So is the jacket.</div>
+            <div class="email-body-text">
+              Look, we're not going to pretend we don't know what happened.<br><br>
+              You found <strong>the Oversized Linen Blazer in Slate</strong>, you liked it enough to add it to your cart, and then... life. Tabs. Second-guessing. Completely valid.<br><br>
+              But here's the thing about this one — it's not a trend piece. It's the thing you reach for when you need to look like you have your life together (even if you're running on two hours of sleep and a prayer).
+            </div>
+            <div class="email-body-text">
+              3 people have viewed it in the last hour. We're just saying.
+            </div>
+            <a class="email-cta-btn" href="#">Pick up where you left off →</a>
+            <div class="email-ps">Not ready? No hard feelings. But if stock runs low — don't say we didn't mention it.</div>
+          </div>
+        </div>
+
+        <div class="annotation">
+          <strong>Copy decision:</strong> Second email in a 3-part cart sequence, so no discount yet — urgency is created through social proof ("3 people viewed") not price. Humor reduces friction. "Life. Tabs. Second-guessing." mirrors the reader's actual internal monologue, which builds trust.
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE 3: Win-Back -->
+    <div class="two-col fade-up">
+      <div class="sample-card">
+        <div class="sample-meta">
+          <span class="sample-tag">Win-Back Flow · 90-day lapsed</span>
+          <span class="sample-brand">Rooted — Wellness DTC</span>
+        </div>
+        <div class="sample-body">
+          <div class="sample-title">Re-engage the 90-Day Ghost</div>
+          <div class="sample-objective">Segment: Purchased once, no activity in 90 days. Goal: re-purchase.</div>
+
+          <div class="email-preview">
+            <div class="email-header-bar">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <div class="email-subject-bar">
+              <div class="email-subject-label">Subject Line</div>
+              <div class="email-subject-text">Did we do something? 👀</div>
+            </div>
+            <div class="email-preview-inner">
+              <div class="email-brand-name">Rooted</div>
+              <div class="email-hero-text">We noticed you've been quiet.</div>
+              <div class="email-body-text">
+                No judgment. Life gets loud. But we've been over here quietly releasing new formulas, improving our bestsellers, and honestly — we think it's time you came back.<br><br>
+                Here's what you missed while you were gone:
+              </div>
+              <div class="email-body-text" style="background: #f8f6f2; padding: 0.8rem 1rem; font-size: 0.8rem; border-left: 3px solid #c4522a; margin: 0.5rem 0;">
+                ✦ New: Daily Calm Gummies (sold out twice already)<br>
+                ✦ Reformulated: Sleep Drops — now 30% more potent<br>
+                ✦ Restocked: Magnesium Complex (finally)
+              </div>
+              <a class="email-cta-btn" href="#">See what's new →</a>
+              <div class="email-ps">Come back with 20% off: ROOTED20</div>
+            </div>
+          </div>
+
+          <div class="annotation">
+            <strong>Copy decision:</strong> Leads with curiosity ("did we do something?") to avoid the generic "we miss you" format. The "what you missed" structure creates FOMO without desperation. Discount held for P.S. to reward readers who engage.
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 4: VIP -->
+      <div class="sample-card">
+        <div class="sample-meta">
+          <span class="sample-tag">VIP Segment · Loyalty</span>
+          <span class="sample-brand">Archetype Studio — Repeat Buyers</span>
+        </div>
+        <div class="sample-body">
+          <div class="sample-title">The Loyalty Email That Feels Earned</div>
+          <div class="sample-objective">Segment: 3+ purchases. Goal: increase AOV, deepen retention.</div>
+
+          <div class="email-preview">
+            <div class="email-header-bar">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <div class="email-subject-bar">
+              <div class="email-subject-label">Subject Line</div>
+              <div class="email-subject-text">You're in. Early access opens tonight.</div>
+            </div>
+            <div class="email-preview-inner">
+              <div class="email-brand-name">Archetype</div>
+              <div class="email-hero-text">For the people<br>who actually show up.</div>
+              <div class="email-body-text">
+                [First Name], you've ordered with us 3 times. Which officially makes you one of <em>those</em> customers — the ones who just... get it.<br><br>
+                So before we open the new season drop to anyone else, we're giving you first access. 24 hours early. No promo code needed. Just because.
+              </div>
+              <a class="email-cta-btn" style="background: #0f0e0d;" href="#">Shop the drop →</a>
+              <div class="email-ps">Access expires at midnight. After that, the general list gets in.</div>
+            </div>
+          </div>
+
+          <div class="annotation">
+            <strong>Copy decision:</strong> Identity-based copy ("people who actually show up") is more powerful than points/rewards. Creates exclusivity through time, not discount. "Just because" signals genuine appreciation, not transactional loyalty.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LANDING PAGES -->
+<section id="landing-pages">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-number">02 / LANDING PAGES</div>
+      <h2>Pages built to <em>convert</em></h2>
+    </div>
+    <p class="section-desc">Direct-response copy focused on clarity, conviction, and the click</p>
+  </div>
+
+  <div class="two-col fade-up">
+
+    <!-- LP 1 -->
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">Product Landing Page</span>
+        <span class="sample-brand">Lumière — Hero Product</span>
+      </div>
+      <div class="sample-body">
+        <div class="sample-title">DTC Product Page — Above the Fold</div>
+        <div class="sample-objective">Objective: Cold traffic → add to cart. Audience: 25–40F, ingredient-savvy, skeptical of skincare claims.</div>
+
+        <div class="lp-preview">
+          <div class="lp-browser-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="lp-url-bar">lumiereskin.com/vitamin-c-serum</div>
+          </div>
+          <div class="lp-inner">
+            <div class="lp-eyebrow">Clinical-strength · 15% L-Ascorbic Acid</div>
+            <div class="lp-headline">The brightening serum your skin has been trying to tell you about.</div>
+            <div class="lp-subhead">Most vitamin C serums oxidize before they work. Ours doesn't. Here's why that changes everything.</div>
+            <ul class="lp-bullets">
+              <li>Stabilized 15% L-Ascorbic Acid — the concentration that actually moves the needle</li>
+              <li>Results in 14 days or your money back — no complicated return process</li>
+              <li>Fragrance-free, dermatologist-tested, works on every skin tone</li>
+            </ul>
+            <div class="lp-cta">Add to Cart — $68</div>
+            <div class="lp-trust">🔒 Free shipping over $75 · 30-day guarantee · 4.9★ from 2,300+ reviews</div>
+          </div>
+        </div>
+
+        <div class="annotation">
+          <strong>Copy decision:</strong> Opens with the common objection (oxidization) to immediately signal credibility. "Your skin has been trying to tell you about" uses second person to create personal relevance. Benefits ladder from science → proof → accessibility.
+        </div>
+      </div>
+    </div>
+
+    <!-- LP 2 -->
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">Promotional Landing Page</span>
+        <span class="sample-brand">Rooted — Bundle Sale</span>
+      </div>
+      <div class="sample-body">
+        <div class="sample-title">Sale Campaign — Urgency Without Desperation</div>
+        <div class="sample-objective">Objective: Warm retargeted traffic → bundle purchase. Goal: increase AOV during promo window.</div>
+
+        <div class="lp-preview">
+          <div class="lp-browser-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="lp-url-bar">rooted.co/build-your-stack</div>
+          </div>
+          <div class="lp-inner">
+            <div class="lp-eyebrow">Limited time · Ends Sunday at midnight</div>
+            <div class="lp-headline">Build the routine you've been putting off. Finally.</div>
+            <div class="lp-subhead">Pick any 3 bestsellers, save 25%. No filler products. No subscription traps. Just the good stuff — yours to keep.</div>
+            <ul class="lp-bullets">
+              <li>Mix and match from 18 bestsellers — sleep, focus, stress, gut</li>
+              <li>Save 25% when you bundle (automatically applied at checkout)</li>
+              <li>Ships in 2 days. Subscribe later only if you want to.</li>
+            </ul>
+            <div class="lp-cta">Build my stack →</div>
+            <div class="lp-trust">🌿 No auto-enroll · Cancel anytime · Real ingredients, real results</div>
+          </div>
+        </div>
+
+        <div class="annotation">
+          <strong>Copy decision:</strong> "Finally" in the headline activates procrastination guilt without shaming. The "No subscription traps" bullet directly addresses the #1 wellness brand objection. CTA is first-person ("my stack") to increase conversion by reinforcing ownership.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIFECYCLE FLOWS -->
+<section class="work-bg" id="lifecycle">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-number">03 / LIFECYCLE MARKETING</div>
+      <h2>Flows built for the <em>long game</em></h2>
+    </div>
+    <p class="section-desc">Full automation sequences mapped to customer behavior and buying stage</p>
+  </div>
+
+  <div class="two-col fade-up">
+
+    <!-- Post-Purchase Flow -->
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">Post-Purchase Flow · 5 emails</span>
+        <span class="sample-brand">Lumière Skin — New Customers</span>
+      </div>
+      <div class="sample-body">
+        <div class="sample-title">Turning a First Purchase Into a Relationship</div>
+        <div class="sample-objective">Goal: reduce buyer's remorse, drive product adoption, set up repeat purchase at day 45.</div>
+
+        <div class="flow-preview">
+          <div class="flow-step">
+            <div class="flow-day">Day 0</div>
+            <div class="flow-content">
+              <div class="flow-subject">Your order is confirmed — and here's what to expect 🌿</div>
+              <div class="flow-preview-text">Order confirmation with a "what comes next" skincare onboarding guide. Reduces anxiety, sets routine expectations.</div>
+              <span class="flow-goal">goal: reassure + educate</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 3</div>
+            <div class="flow-content">
+              <div class="flow-subject">It's been 3 days. Here's what your skin is doing right now.</div>
+              <div class="flow-preview-text">Education email on the "adjustment period" — addresses common side effects, normalizes the process, reduces early returns.</div>
+              <span class="flow-goal">goal: retention + product adoption</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 14</div>
+            <div class="flow-content">
+              <div class="flow-subject">Two weeks in. Are you seeing it?</div>
+              <div class="flow-preview-text">Progress check-in with social proof. Invites review, introduces complementary products as "next step" upsell.</div>
+              <span class="flow-goal">goal: review + upsell</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 30</div>
+            <div class="flow-content">
+              <div class="flow-subject">One month of Lumière. What changed?</div>
+              <div class="flow-preview-text">Milestone celebration + story email featuring a customer transformation. Soft refill prompt with loyalty framing.</div>
+              <span class="flow-goal">goal: community + loyalty</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 45</div>
+            <div class="flow-content">
+              <div class="flow-subject">Running low? (We've been counting.)</div>
+              <div class="flow-preview-text">Predictive replenishment email based on average usage data. Playful subject, urgent but not pushy. Subscribe & save offer introduced.</div>
+              <span class="flow-goal">goal: repeat purchase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Welcome Series -->
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">Welcome Series · 4 emails</span>
+        <span class="sample-brand">Archetype Studio — New Subscribers</span>
+      </div>
+      <div class="sample-body">
+        <div class="sample-title">New Subscriber → First Purchase in 7 Days</div>
+        <div class="sample-objective">Audience: Non-buyers. Signed up via Instagram ad or quiz. Goal: first purchase within 7 days.</div>
+
+        <div class="flow-preview">
+          <div class="flow-step">
+            <div class="flow-day">Day 0</div>
+            <div class="flow-content">
+              <div class="flow-subject">You found us. Now let's get you dressed. 🖤</div>
+              <div class="flow-preview-text">Brand welcome email. Establishes aesthetic identity. Discount code introduced with 72-hour expiry. Short, high-impact, visually led.</div>
+              <span class="flow-goal">goal: brand impression + first click</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 2</div>
+            <div class="flow-content">
+              <div class="flow-subject">The pieces our stylists reach for first.</div>
+              <div class="flow-preview-text">Curated bestsellers email, framed as insider editorial. Moves subscribers from browsing to intent with social proof and scarcity signals.</div>
+              <span class="flow-goal">goal: product discovery</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 5</div>
+            <div class="flow-content">
+              <div class="flow-subject">"I wore it three times in one week." — Real reviews →</div>
+              <div class="flow-preview-text">Customer voice email. UGC-style review excerpts + styled photos. Overcomes purchase hesitation with authentic social proof.</div>
+              <span class="flow-goal">goal: trust + conversion</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Day 7</div>
+            <div class="flow-content">
+              <div class="flow-subject">Last call (for real this time).</div>
+              <div class="flow-preview-text">Final urgency email before discount expires. Direct, playful, no fluff. Two options: take the deal or opt into browse-only list (re-consent mechanism).</div>
+              <span class="flow-goal">goal: convert or re-segment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SHORT-FORM COPY -->
+<section>
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-number">04 / SHORT-FORM & SPECIALTY</div>
+      <h2>Subject lines, CTAs, <em>every word counted</em></h2>
+    </div>
+    <p class="section-desc">The small copy that makes the big copy work</p>
+  </div>
+
+  <div class="three-col fade-up">
+
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">Subject Line Testing</span>
+        <span class="sample-brand">A/B Variants</span>
+      </div>
+      <div class="sample-body" style="padding: 1.5rem;">
+        <div class="sample-title" style="font-size:1rem; margin-bottom:1.2rem;">Subject Line A/B Sets</div>
+
+        <div style="margin-bottom:1.2rem;">
+          <div style="font-size:0.68rem; font-family:'DM Mono',monospace; letter-spacing:0.12em; color:var(--dust); margin-bottom:0.5rem; text-transform:uppercase;">Restock alert</div>
+          <div style="padding:0.5rem 0.8rem; background:var(--cream); font-size:0.82rem; margin-bottom:0.3rem; border-left:2px solid var(--sage);">A: It's back. Don't wait this time.</div>
+          <div style="padding:0.5rem 0.8rem; background:var(--cream); font-size:0.82rem; border-left:2px solid var(--rust);">B: The one you asked us to restock? It's here. 👀</div>
+        </div>
+
+        <div style="margin-bottom:1.2rem;">
+          <div style="font-size:0.68rem; font-family:'DM Mono',monospace; letter-spacing:0.12em; color:var(--dust); margin-bottom:0.5rem; text-transform:uppercase;">Flash sale (4 hrs)</div>
+          <div style="padding:0.5rem 0.8rem; background:var(--cream); font-size:0.82rem; margin-bottom:0.3rem; border-left:2px solid var(--sage);">A: 4 hours. 30% off. No conditions.</div>
+          <div style="padding:0.5rem 0.8rem; background:var(--cream); font-size:0.82rem; border-left:2px solid var(--rust);">B: This is the one you set an alarm for.</div>
+        </div>
+
+        <div>
+          <div style="font-size:0.68rem; font-family:'DM Mono',monospace; letter-spacing:0.12em; color:var(--dust); margin-bottom:0.5rem; text-transform:uppercase;">Post-purchase</div>
+          <div style="padding:0.5rem 0.8rem; background:var(--cream); font-size:0.82rem; margin-bottom:0.3rem; border-left:2px solid var(--sage);">A: Your order is confirmed 🎉</div>
+          <div style="padding:0.5rem 0.8rem; background:var(--cream); font-size:0.82rem; border-left:2px solid var(--rust);">B: It's packed. Here's what happens next.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">SMS Copy</span>
+        <span class="sample-brand">Rooted — Flash Promo</span>
+      </div>
+      <div class="sample-body" style="padding: 1.5rem;">
+        <div class="sample-title" style="font-size:1rem; margin-bottom:1.2rem;">High-converting SMS</div>
+        <div class="sms-preview">
+          <div class="sms-bubble">Rooted: Your stress bundle is 25% off for the next 6 hours. No code needed — just your usual checkout. Shop → rootd.co/sale</div>
+          <div class="sms-time">11:02 AM</div>
+          <div class="sms-bubble" style="margin-top:1rem;">Rooted: Last call 🌿 Sale ends in 1 hour. Same link: rootd.co/sale — text STOP to opt out</div>
+          <div class="sms-time">4:00 PM</div>
+        </div>
+        <div class="annotation" style="margin-top:1rem;">
+          <strong>Note:</strong> SMS copy respects the channel — short, direct, no emoji overload. Opt-out included per compliance. Follow-up sent only once.
+        </div>
+      </div>
+    </div>
+
+    <div class="sample-card">
+      <div class="sample-meta">
+        <span class="sample-tag">CTA Variations</span>
+        <span class="sample-brand">Cross-client</span>
+      </div>
+      <div class="sample-body" style="padding: 1.5rem;">
+        <div class="sample-title" style="font-size:1rem; margin-bottom:1.2rem;">CTAs by Context</div>
+
+        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+          <div>
+            <div style="font-size:0.68rem; color:var(--dust); font-family:'DM Mono',monospace; letter-spacing:0.1em; margin-bottom:0.3rem; text-transform:uppercase;">Low-urgency browse</div>
+            <div style="background:var(--ink); color:var(--cream); padding:0.5rem 1rem; font-size:0.8rem; font-weight:600; display:inline-block;">Explore the collection →</div>
+          </div>
+          <div>
+            <div style="font-size:0.68rem; color:var(--dust); font-family:'DM Mono',monospace; letter-spacing:0.1em; margin-bottom:0.3rem; text-transform:uppercase;">High-urgency sale</div>
+            <div style="background:var(--rust); color:white; padding:0.5rem 1rem; font-size:0.8rem; font-weight:600; display:inline-block;">Claim my 30% off</div>
+          </div>
+          <div>
+            <div style="font-size:0.68rem; color:var(--dust); font-family:'DM Mono',monospace; letter-spacing:0.1em; margin-bottom:0.3rem; text-transform:uppercase;">Re-engagement</div>
+            <div style="background:var(--sage); color:white; padding:0.5rem 1rem; font-size:0.8rem; font-weight:600; display:inline-block;">Show me what's new</div>
+          </div>
+          <div>
+            <div style="font-size:0.68rem; color:var(--dust); font-family:'DM Mono',monospace; letter-spacing:0.1em; margin-bottom:0.3rem; text-transform:uppercase;">Quiz / discovery</div>
+            <div style="background:var(--gold); color:var(--ink); padding:0.5rem 1rem; font-size:0.8rem; font-weight:600; display:inline-block;">Find my routine →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg" id="skills">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-number">05 / CAPABILITIES</div>
+      <h2>What I <em>bring</em> to the table</h2>
+    </div>
+    <p class="section-desc">Built from five years across CX, operations, and creative work</p>
+  </div>
+
+  <div class="skills-grid fade-up">
+    <div class="skill-item">
+      <div class="skill-icon">✉️</div>
+      <div class="skill-name">Email & Automation</div>
+      <div class="skill-desc">Welcome series, cart abandonment, post-purchase flows, win-back, VIP — mapped to customer lifecycle stage and behavioral triggers.</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">📄</div>
+      <div class="skill-name">Landing Page Copy</div>
+      <div class="skill-desc">Direct-response copy for product pages, promos, and quizzes. Structured around objections, social proof, and conversion architecture.</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🎯</div>
+      <div class="skill-name">Lifecycle Strategy</div>
+      <div class="skill-desc">Strong foundation in segmentation, personalization, and retention copy — built from 5+ years of customer journey mapping in CX roles.</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Performance Metrics</div>
+      <div class="skill-desc">Fluent in open rate, CTR, conversion rate, revenue per send, and list health. Copy decisions backed by data, not instinct alone.</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Multi-Brand Voice</div>
+      <div class="skill-desc">Comfort writing across tones — clinical/authoritative, playful/conversational, luxury/editorial. See samples for live examples of each.</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">AI-Augmented Workflow</div>
+      <div class="skill-desc">Active user of AI tools for research, brief synthesis, and first-draft acceleration — without losing creative authorship or brand specificity.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-bg" id="about">
+  <div class="about-grid">
+    <div class="about-left fade-up">
+      <div class="section-number" style="color: rgba(245,240,232,0.4);">06 / ABOUT</div>
+      <h2>Copy rooted in <em>customer truth</em></h2>
+      <p class="about-text">I came to copywriting through customer experience — five years of sitting at the intersection of what brands say and how customers actually feel when they hear it. That gap? I've made it my whole thing.</p>
+      <p class="about-text">I understand churn, loyalty, and the exact moment a customer decides whether to trust a brand. Because I've spent years managing the fallout when that trust breaks — and studying the strategies that keep it intact.</p>
+      <p class="about-text">I'm also a published writer with over 7,000 readers on Wattpad, which means I've learned something most copywriters miss: readers know when you're performing for them versus actually speaking to them. I aim for the second one, every time.</p>
+    </div>
+    <div class="about-right fade-up">
+      <div class="philosophy-item">
+        <div class="philosophy-num">01</div>
+        <div class="philosophy-title">The reader decides what the copy means.</div>
+        <div class="philosophy-text">I write for the person receiving it, not the brief. Customer psychology shapes every structural choice — from subject line to sign-off.</div>
+      </div>
+      <div class="philosophy-item">
+        <div class="philosophy-num">02</div>
+        <div class="philosophy-title">Clarity converts. Cleverness assists.</div>
+        <div class="philosophy-text">A great hook means nothing if the offer is buried. I prioritize information architecture — what do they need to know, and in what order?</div>
+      </div>
+      <div class="philosophy-item">
+        <div class="philosophy-num">03</div>
+        <div class="philosophy-title">Every email is part of a longer story.</div>
+        <div class="philosophy-text">I don't write standalone emails. I write with the full lifecycle in mind — because the tone of email 3 affects whether they open email 8.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="contact-inner fade-up">
+    <div class="section-number" style="text-align:center; margin-bottom:0.5rem;">07 / LET'S WORK</div>
+    <h2>Ready to make <em>copy</em> that earns its keep?</h2>
+    <p class="contact-sub">Whether you're building out an email program from scratch or need a writer who can slot into your existing team and make an immediate impact — let's talk.</p>
+    <div class="contact-links">
+      <a href="mailto:ruthaimila17@gmail.com" class="contact-link primary">Email me →</a>
+      <a href="https://ruthaimila.github.io/ruth-aimila-portfolio" target="_blank" class="contact-link">Full Portfolio</a>
+      <a href="https://thekillink.wordpress.com" target="_blank" class="contact-link">My Blog</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Ruth Aimila · Copywriter</span>
+  <span>Abuja, Nigeria · Remote-ready · CST available</span>
+  <a href="https://ruthaimila.github.io/ruth-aimila-portfolio">ruthaimila.github.io</a>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress');
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    el.style.width = pct + '%';
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible
